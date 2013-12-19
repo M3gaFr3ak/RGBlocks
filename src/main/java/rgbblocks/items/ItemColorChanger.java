@@ -24,18 +24,18 @@ public class ItemColorChanger extends Item
 	{
 		if (player.isSneaking())
 		{
-			player.sendChatToPlayer(new ChatMessageComponent().addText("use the command \"setColor <color as hex>\""));
+			player.sendChatToPlayer(new ChatMessageComponent().addText("use the command \"changeColor <color as hex>\" to set the Color!"));
 		} else
 		{
 			if (world.getBlockTileEntity(x, y, z) instanceof TileEntityRGB)
 			{
-				((TileEntityRGB) world.getBlockTileEntity(x, y, z)).setColor(getColor(itemstack));
+				((TileEntityRGB) world.getBlockTileEntity(x, y, z)).setColor(getColor(itemstack), true);
 			}
 		}
 		return false;
 	}
 
-	public Color getColor(ItemStack itemstack)
+	public static Color getColor(ItemStack itemstack)
 	{
 		if (!itemstack.hasTagCompound())
 		{
@@ -59,7 +59,7 @@ public class ItemColorChanger extends Item
 			{
 				green = 255;
 			}
-			if (nbt.hasKey("clrGreen"))
+			if (nbt.hasKey("clrBlue"))
 			{
 				blue = nbt.getInteger("clrBlue");
 			} else
@@ -67,6 +67,19 @@ public class ItemColorChanger extends Item
 				blue = 255;
 			}
 			return new Color(red, green, blue);
+		}
+	}
+
+	public static void setColor(ItemStack itemstack, Color color)
+	{
+		if (!itemstack.hasTagCompound())
+			itemstack.setTagCompound(new NBTTagCompound());
+		NBTTagCompound nbt = itemstack.getTagCompound();
+		if (color != null)
+		{
+			nbt.setInteger("clrRed", color.getRed());
+			nbt.setInteger("clrGreen", color.getGreen());
+			nbt.setInteger("clrBlue", color.getBlue());
 		}
 	}
 }
