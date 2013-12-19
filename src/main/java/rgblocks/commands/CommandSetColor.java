@@ -1,4 +1,4 @@
-package rgbblocks.commands;
+package rgblocks.commands;
 
 import java.awt.Color;
 
@@ -7,7 +7,7 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatMessageComponent;
-import rgbblocks.items.ItemColorChanger;
+import rgblocks.items.ItemColorChanger;
 
 public class CommandSetColor extends CommandBase
 {

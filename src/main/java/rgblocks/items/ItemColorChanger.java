@@ -1,4 +1,4 @@
-package rgbblocks.items;
+package rgblocks.items;
 
 import java.awt.Color;
 
@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatMessageComponent;
 import net.minecraft.world.World;
-import rgbblocks.RGBlocks;
+import rgblocks.RGBlocks;
 import rgblocks.tiles.TileEntityRGB;
 
 public class ItemColorChanger extends Item

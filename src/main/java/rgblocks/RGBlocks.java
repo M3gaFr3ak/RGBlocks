@@ -1,4 +1,4 @@
-package rgbblocks;
+package rgblocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.command.ServerCommandManager;
@@ -7,10 +7,10 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.Configuration;
-import rgbblocks.commands.CommandSetColor;
-import rgbblocks.items.ItemColorChanger;
 import rgblocks.blocks.BlockRGB;
 import rgblocks.blocks.BlockRGBStairs;
+import rgblocks.commands.CommandSetColor;
+import rgblocks.items.ItemColorChanger;
 import rgblocks.render.RenderHandler;
 import rgblocks.tiles.TileEntityRGB;
 import cpw.mods.fml.client.registry.RenderingRegistry;
