@@ -1,0 +1,13 @@
+{
+  "modinfoversion": 2,
+  "modlist": [{
+    "modid": "rgblocks",
+    "name": "RGBlocks",
+    "description": "A Mod that colorable Blocks to Minecraft",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+	  "url": "",
+    "authors": [ "M3gaFr3ak" ],
+    "credits": ""
+  }]
+}
