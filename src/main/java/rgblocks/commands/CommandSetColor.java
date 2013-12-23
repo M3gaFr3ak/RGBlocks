@@ -3,6 +3,7 @@ package rgblocks.commands;
 import java.awt.Color;
 
 import net.minecraft.command.CommandBase;
+import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -40,4 +41,13 @@ public class CommandSetColor extends CommandBase
 		return commandsender instanceof EntityPlayer;
 	}
 
+	public int compareTo(ICommand par1ICommand)
+	{
+		return this.getCommandName().compareTo(par1ICommand.getCommandName());
+	}
+
+	public int compareTo(Object par1Obj)
+	{
+		return this.compareTo((ICommand) par1Obj);
+	}
 }
