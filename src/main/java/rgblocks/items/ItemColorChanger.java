@@ -2,14 +2,19 @@ package rgblocks.items;
 
 import java.awt.Color;
 
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatMessageComponent;
+import net.minecraft.util.Icon;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import rgblocks.RGBlocks;
 import rgblocks.tiles.TileEntityRGB;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemColorChanger extends Item
 {
@@ -81,5 +86,21 @@ public class ItemColorChanger extends Item
 			nbt.setInteger("clrGreen", color.getGreen());
 			nbt.setInteger("clrBlue", color.getBlue());
 		}
+	}
+
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IconRegister iconregister)
+	{
+		itemIcon = iconregister.registerIcon("rgblocks:colorchanger");
+	}
+
+	public Icon getIconFromDamage(int dmg)
+	{
+		return itemIcon;
+	}
+
+	public String getStatName()
+	{
+		return "Test!";
 	}
 }

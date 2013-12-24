@@ -74,6 +74,8 @@ public class TileEntityRGB extends TileEntity
 		int green = clamp(nbt.getInteger("clrGreen"), 0, 255);
 		int blue = clamp(nbt.getInteger("clrBlue"), 0, 255);
 		setColor(new Color(red, green, blue), false);
+		block = Block.blocksList[nbt.getInteger("blockID")];
+		meta = nbt.getInteger("meta");
 	}
 
 	public void writeToNBT(NBTTagCompound nbt)
@@ -82,6 +84,8 @@ public class TileEntityRGB extends TileEntity
 		nbt.setInteger("clrRed", color.getRed());
 		nbt.setInteger("clrGreen", color.getGreen());
 		nbt.setInteger("clrBlue", color.getBlue());
+		nbt.setInteger("blockID", block.blockID);
+		nbt.setInteger("meta", meta);
 	}
 
 	@Override

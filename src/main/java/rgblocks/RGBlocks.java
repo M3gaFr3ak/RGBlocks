@@ -48,7 +48,7 @@ public class RGBlocks
 		config.load();
 		stairsRGBID = config.getBlock("stairsRGBID", 1337, "ID for the RGB Stairs").getInt();
 		blockRGBID = config.getBlock("blockRGBID", 1338, "ID for the RGB Block").getInt();
-		itemColorChangerID = config.getItem("itemColorChangerID", 1338, "ID for the RGB Color Changer").getInt();
+		itemColorChangerID = config.getItem("itemColorChangerID", 5000, "ID for the RGB Color Changer").getInt();
 		config.save();
 	}
 
@@ -60,7 +60,7 @@ public class RGBlocks
 		GameRegistry.registerBlock(stairs, ItemBlock.class, "rgbstairs");
 		GameRegistry.registerBlock(block, ItemBlock.class, "rgbblock");
 		GameRegistry.registerTileEntity(TileEntityRGB.class, "rgblocks.tileentityrgb");
-		new ItemColorChanger(itemColorChangerID);
+		ItemColorChanger changer = new ItemColorChanger(itemColorChangerID);
 		renderHandlerID = RenderingRegistry.getNextAvailableRenderId();
 		RenderHandler handler = new RenderHandler(renderHandlerID);
 		RenderingRegistry.registerBlockHandler(handler);

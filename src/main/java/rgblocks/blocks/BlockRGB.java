@@ -80,4 +80,10 @@ public class BlockRGB extends Block implements ITileEntityProvider
 		TileEntityRGB te = (TileEntityRGB) world.getBlockTileEntity(x, y, z);
 		return te.getColor().getRGB();
 	}
+
+	public boolean isOpaqueCube()
+	{
+		// for the sake of glass
+		return false;
+	}
 }
