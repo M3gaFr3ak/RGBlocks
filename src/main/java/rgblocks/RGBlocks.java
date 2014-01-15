@@ -3,6 +3,7 @@ package rgblocks;
 import net.minecraft.block.Block;
 import net.minecraft.command.ServerCommandManager;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
@@ -11,12 +12,14 @@ import rgblocks.blocks.BlockRGB;
 import rgblocks.blocks.BlockRGBStairs;
 import rgblocks.commands.CommandSetColor;
 import rgblocks.items.ItemColorChanger;
+import rgblocks.proxy.CommonProxy;
 import rgblocks.render.RenderHandler;
 import rgblocks.tiles.TileEntityRGB;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
+import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
@@ -27,6 +30,9 @@ import cpw.mods.fml.common.registry.GameRegistry;
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class RGBlocks
 {
+	@SidedProxy(clientSide = "rgblocks.proxy.ClientProxy", serverSide = "rgblocks.proxy.CommonProxy")
+	public static CommonProxy proxy;
+
 	@Instance("rgblocks")
 	public static RGBlocks instance;
 	public CreativeTabs ModTab = new CreativeTabs("RGBlocks")
@@ -40,6 +46,9 @@ public class RGBlocks
 	public int stairsRGBID;
 	public int blockRGBID;
 	public int itemColorChangerID;
+    public Item itemColorChanger;
+    public Block blockRGB;
+    public Block blockRGBStairs;
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
@@ -55,15 +64,16 @@ public class RGBlocks
 	@EventHandler
 	public void init(FMLInitializationEvent event)
 	{
-		BlockRGBStairs stairs = new BlockRGBStairs(stairsRGBID);
-		BlockRGB block = new BlockRGB(blockRGBID);
-		GameRegistry.registerBlock(stairs, ItemBlock.class, "rgbstairs");
-		GameRegistry.registerBlock(block, ItemBlock.class, "rgbblock");
+        blockRGBStairs = new BlockRGBStairs(stairsRGBID);
+        blockRGB = new BlockRGB(blockRGBID);
+		GameRegistry.registerBlock(blockRGBStairs, ItemBlock.class, "rgbstairs");
+		GameRegistry.registerBlock(blockRGB, ItemBlock.class, "rgbblock");
 		GameRegistry.registerTileEntity(TileEntityRGB.class, "rgblocks.tileentityrgb");
-		ItemColorChanger changer = new ItemColorChanger(itemColorChangerID);
+        itemColorChanger = new ItemColorChanger(itemColorChangerID);
 		renderHandlerID = RenderingRegistry.getNextAvailableRenderId();
 		RenderHandler handler = new RenderHandler(renderHandlerID);
 		RenderingRegistry.registerBlockHandler(handler);
+        proxy.registerRecipes();
 	}
 
 	@EventHandler
